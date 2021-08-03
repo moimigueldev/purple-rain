@@ -2,10 +2,11 @@
 // Background (255, 239, 199)
 
 let rd;
-const rdAmount = 200;
+const rdAmount = 650;
 const rdList = [];
+
 function setup() {
-  createCanvas(400, 400);
+  createCanvas(800, 800);
 
   for (let i = 0; i < rdAmount; i++) {
     rdList.push(new RainDrop());
@@ -13,7 +14,9 @@ function setup() {
 }
 
 function draw() {
+  // background('rgba(171, 141, 201, 0.1)');
   background(171, 141, 201);
+
   if (keyIsDown(LEFT_ARROW)) {
     rdList.forEach((rd) => rd.tiltLeft());
   }
@@ -26,10 +29,3 @@ function draw() {
     rd.show();
   });
 }
-
-// function keyReleased() {
-//   if (keyCode === LEFT_ARROW) {
-//     rdList.forEach((rd) => rd.resetLeftTilt());
-//   }
-//   return false; // prevent any default behavior
-// }
