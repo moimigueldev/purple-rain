@@ -1,9 +1,10 @@
 // Rain (252, 182, 3)
 // Background (255, 239, 199)
 const drops = [];
-const numOfDrops = 500;
+const numOfDrops = 1000;
 function setup() {
-  createCanvas(2500, 600);
+  createCanvas(windowWidth, windowHeight);
+  angleMode(DEGREES);
   for (let i = 0; i < numOfDrops; i++) {
     drops.push(new Drop());
   }
@@ -27,10 +28,14 @@ function draw() {
 }
 
 class Drop {
-  length = random(5, 20);
-
   constructor() {
+    this.setConstruct();
+  }
+
+  setConstruct() {
+    this.length = random(5, 20);
     this.pos = createVector(random(width), random(0, -height));
+
     this.vel = createVector(0, 1);
     this.acc = createVector();
     this.weight = map(this.length, 5, 20, 2, 7);
@@ -40,6 +45,7 @@ class Drop {
     );
     this.rightWind = createVector(0.05, 0);
     this.leftWind = createVector(-0.05, 0);
+    this.angle = 0;
   }
 
   setForce(force) {
@@ -48,6 +54,8 @@ class Drop {
 
   update() {
     this.setForce(this.gravity);
+
+    this.angle = map(this.acc.x, -0.5, 0.5, -45, 45);
     this.vel.add(this.acc);
     this.pos.add(this.vel);
     this.acc = createVector();
@@ -57,20 +65,16 @@ class Drop {
     push();
     stroke(252, 182, 3);
     strokeWeight(this.weight);
+    translate(this.pos.x, this.pos.y);
+    rotate(this.angle);
     line(this.pos.x, this.pos.y, this.pos.x, this.pos.y + this.length);
     pop();
   }
 
   checkBorder() {
     if (this.pos.y + this.length > height) {
-      this.length = random(5, 20);
-      this.weight = map(this.length, 5, 20, 1, 7);
-      this.pos = createVector(random(width), random(0, -height));
-      this.vel = createVector(0, 1);
-      this.gravity = createVector(
-        0,
-        Math.abs(map(this.weight, 2, 7, 0.01, 0.09))
-      );
+      this.setConstruct();
+      this.angle = map(this.acc.x, -0.5, 0.5, 0, 45);
     }
   }
 }
