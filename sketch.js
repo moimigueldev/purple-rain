@@ -1,7 +1,9 @@
 // Rain (252, 182, 3)
 // Background (255, 239, 199)
 const drops = [];
-const numOfDrops = 1000;
+const numOfDrops = 500;
+let westWind = 0.05;
+let eastWind = -0.05;
 function setup() {
   createCanvas(windowWidth, windowHeight);
   angleMode(DEGREES);
@@ -43,8 +45,8 @@ class Drop {
       0,
       Math.abs(map(this.weight, 2, 7, 0.01, 0.09))
     );
-    this.rightWind = createVector(0.05, 0);
-    this.leftWind = createVector(-0.05, 0);
+    this.rightWind = createVector(westWind, 0);
+    this.leftWind = createVector(eastWind, 0);
     this.angle = 0;
   }
 
