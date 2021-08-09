@@ -2,7 +2,7 @@
 
 This is an animation of orange rain falling with gravity and wind forces(as vectors) interacting with the rain
 
-![ Orange Rain](orange-rain.gif)
+![ Purple Rain](purple-rain.gif)
 
 ```
 eastWind: (0.5, 0)

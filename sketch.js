@@ -1,7 +1,5 @@
-// Rain (252, 182, 3)
-// Background (255, 239, 199)
 const drops = [];
-const numOfDrops = 500;
+const numOfDrops = 1000;
 let westWind = 0.05;
 let eastWind = -0.05;
 function setup() {
@@ -65,7 +63,7 @@ class Drop {
 
   show() {
     push();
-    stroke(252, 182, 3);
+    stroke('#7851a9');
     strokeWeight(this.weight);
     translate(this.pos.x, this.pos.y);
     rotate(this.angle);
